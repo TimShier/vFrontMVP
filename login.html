@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    </head>
+
+    <body>
+        <form action="http://localhost:8080/api/login" method="POST">
+            <div id="loginForm">
+                <input type="text" name="username" id="username"/>
+                <input type="text" name="password" id="password"/>
+
+            </div>
+            <div>
+                <textarea id="bearer">&NonBreakingSpace;</textarea>
+
+            </div>
+            <input type="submit" value="FormSubmit"/>
+        </form>
+        <input type="submit" value="JSsubmit" onclick="login();"/>
+
+        <p>Login, then copy text to clipboard then click:
+            <a href="./viewStream.html">View Stream</a>
+        </p>
+    </body>
+
+<script>
+
+    function login(){
+        var username = $("#username").val()
+        var password = $("#password").val()
+        var bodyData =  {username:username, password:password} //{"username": username, "password": password}
+        console.log(bodyData)
+        console.log("Username: " + username + " Password: " + password );
+        $.ajax({
+            url:"http://127.0.0.1:8080/api/login",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            type:'POST',
+            data: JSON.stringify(bodyData),
+            success:function (req) {
+                console.log("BEARER START:")
+                console.log (req)
+                console.log("BEARER END:")
+                $("#bearer").html(req.access_token)
+            }
+        });
+    }
+
+
+
+</script>
+
+</html>

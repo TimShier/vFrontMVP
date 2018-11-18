@@ -1,0 +1,78 @@
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="http://player.dacast.com/js/player.js"></script>
+</head>
+
+<body>
+
+    <textarea id="token"></textarea>
+    <span onclick="loadVideo()">Load</span>
+
+    <div id="playerHolder"></div>
+    <div id="scriptHolder"></div>
+
+</body>
+
+<script>
+
+    var baseUrl = "http://videyo-tmp.eu-west-2.elasticbeanstalk.com/" //"http://localhost:8080"
+
+    var myPlayer
+    var targetDiv = "playerHolder"
+
+    function loadVideo(){
+        var token = $("#token").val()
+        $.ajax({
+            headers: {
+                'Content-Type': "application/json",
+                'X-Auth-Token': token
+            },
+            url:baseUrl+"/stream/createContentView?id=1&playlistId=1",
+            type:'POST',
+            success:function (reqContentView) {
+                console.log(reqContentView)
+
+                        var uuid= reqContentView
+
+            // on load, renderContentView
+            $.ajax({
+                headers: {
+                    'Content-Type': "application/json",
+                    'X-Auth-Token': token
+                },
+                url:baseUrl+"/stream/renderContentView?uuid="+uuid+"&targetDiv="+targetDiv,
+                type:'POST',
+                success:function (req) {
+                    console.log("Success");
+                    console.log(req);
+                    $("#scriptHolder").html(req)
+                    //console.log(eval($("#scriptHolder").text()));
+
+
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown){
+                    console.log("Error");
+                    console.log(errorThrown)
+                    console.log(XMLHttpRequest)
+                    $("#"+targetDiv).html(textStatus)
+                }
+            });
+
+
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){
+                console.log("Error");
+                console.log(errorThrown)
+                console.log(XMLHttpRequest)
+            }
+        });
+
+        // to do it all at once... we're going to
+//
+
+
+    }
+</script>
+
+</html>
