@@ -4,21 +4,23 @@
     </head>
 
     <body>
-        <form action="http://localhost:8080/api/login" method="POST">
-            <div id="loginForm">
-                <input type="text" name="username" id="username"/>
-                <input type="text" name="password" id="password"/>
 
-            </div>
-            <div>
-                <textarea id="bearer">&NonBreakingSpace;</textarea>
+        <div id="loginForm">
+            Username (number):<input type="text" name="username" id="username"/><br/>
+            Password:<input type="text" name="password" id="password"/>
 
-            </div>
-            <input type="submit" value="FormSubmit"/>
-        </form>
+        </div>
+
+
+
         <input type="submit" value="JSsubmit" onclick="login();"/>
 
-        <p>Login, then copy text to clipboard then click:
+        <div>
+            <textarea id="bearer">&NonBreakingSpace;</textarea>
+
+        </div>
+
+        <p>Login, then copy text from the textbox (Cntr + C) to clipboard then click:
             <a href="./viewStream.html">View Stream</a>
         </p>
     </body>
