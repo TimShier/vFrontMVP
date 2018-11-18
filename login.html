@@ -27,6 +27,8 @@
 
 <script>
 
+    var baseUrl = "http://videyo-tmp.eu-west-2.elasticbeanstalk.com/" //"http://localhost:8080"
+
     function login(){
         var username = $("#username").val()
         var password = $("#password").val()
@@ -34,7 +36,7 @@
         console.log(bodyData)
         console.log("Username: " + username + " Password: " + password );
         $.ajax({
-            url:"http://127.0.0.1:8080/api/login",
+            url:baseUrl+"/api/login",
             headers: {
                 "Content-Type": "application/json"
             },
