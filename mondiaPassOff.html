@@ -26,19 +26,33 @@
         {
             // SUCCESS: http://www.yoursite.com?status=SUCCESS&customerId=12345&operator=Etisalat%20Egypt
             // ERROR: http://www.yoursite.com?status=ERROR&errorCode=4001&errorDesc=MSISDN%20Not found%20in%20header
-            if(location.search.split('status=')[1] == "SUCCESS"){
+
+
+            // let's build this params a bit more smartly.
+            var allParams = location.search.split("&") // split around &.
+            var newParams = {}
+            allParams[0].replace("?","") // get rid of that ? in param 1.
+            for(var i = 0; i < allParams.length();i++){
+                // now we need to split it around the = to get the key:value
+                var parts = allParams[i].split("=")
+                // now add this to the map of form key = value.
+                // as held in parts[0] and [1].
+                newParams[parts[0]] = parts[1]
+            }
+
+            if(newParams["status"] == "SUCCESS"){
                 console.log("SUCCESS:\n" +
-                        "Status: " + location.search.split('status=')[1] + "\n" +
-                        "CustomerId: " + location.search.split('customerId=')[1] + "\n" +
-                        "Operator: " + location.search.split('operator=')[1])
+                        "Status: " + newParams["status"] + "\n" +
+                        "CustomerId: " + newParams["customerId"] + "\n" +
+                        "Operator: " + newParams["operator"])
             }
             else
             {
                 // must be an error.
                 console.log("ERROR:\n" +
-                        "Status: " + location.search.split('status=')[1] + "\n" +
-                        "Error Code: " + location.search.split('errorCode=')[1] + "\n" +
-                        "Error Desc: " + location.search.split('errorDesc=')[1] + "\n")
+                        "Status: " + newParams["status"] + "\n" +
+                        "Error Code: " + newParams["errorCode"] + "\n" +
+                        "Error Desc: " + newParams["errorDesc"] + "\n")
             }
 
         }
