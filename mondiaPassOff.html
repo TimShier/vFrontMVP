@@ -22,10 +22,10 @@
             // now we need to split it around the = to get the key:value
             // trash and question marks... obv will be before first
             // but hey, when in rome, destroy the uncertainty :P.
-            var parts = allParams[i].replace("?","").split("=")
+            var parts = allParams[i].split("=")
             // now add this to the map of form key = value.
             // as held in parts[0] and [1].
-            newParams[parts[0]] = parts[1]
+            newParams[parts[0].replace("?","")] = parts[1]
         }
 
         console.log ("NEW PARAMS")
@@ -45,9 +45,6 @@
             // SUCCESS: http://www.yoursite.com?status=SUCCESS&customerId=12345&operator=Etisalat%20Egypt
             // ERROR: http://www.yoursite.com?status=ERROR&errorCode=4001&errorDesc=MSISDN%20Not found%20in%20header
 
-
-
-
             if(newParams["status"] == "SUCCESS"){
                 console.log("SUCCESS:\n" +
                         "Status: " + newParams["status"] + "\n" +
@@ -62,7 +59,6 @@
                         "Error Code: " + newParams["errorCode"] + "\n" +
                         "Error Desc: " + newParams["errorDesc"] + "\n")
             }
-
         }
 
     });
