@@ -5,34 +5,17 @@
 
     <body>
 
-        <div id="loginForm">
-            Username (number):<input type="text" name="username" id="username"/><br/>
-            Password:<input type="text" name="password" id="password"/>
-
-        </div>
-
-
-
-        <input type="submit" value="JSsubmit" onclick="login();"/>
-
-        <div>
-            <textarea id="bearer">&NonBreakingSpace;</textarea>
-
-        </div>
-
-        <p>Login, then copy text from the textbox (Cntr + C) to clipboard then click:
-            <a href="./viewStream.html">View Stream</a>
-        </p>
+        <p>Mondia Pass Off... what happens?</p>
     </body>
 
 <script>
-    $(document).onload(function(){
+    $(document).ready(function() {
         var merchantId = 147
         var operatorIdd = "MtnRSA"
         var hostUrl = "http://login.mondiamediamena.com"
         var redirectUrl = "http://cowboyengineering.co.za/vFrontMVP/mondiaPassOff.html"
         window.location = hostUrl+"/billinggw-lcm/billing?method=getcustomer&merchantId="+merchantId+"&redirect="+redirectUrl //+"&operatorId=<OPERATOR ID>"
-    })
+    });
 </script>
 
 </html>
