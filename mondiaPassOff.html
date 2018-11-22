@@ -25,7 +25,9 @@
             var parts = allParams[i].split("=")
             // now add this to the map of form key = value.
             // as held in parts[0] and [1].
-            newParams[parts[0].replace("?","")] = parts[1]
+            var newPart = parts[0].replace("?","")
+            console.log("Old Part " + parts[0] + " new Part " + newPart)
+            newParams[newPart] = parts[1]
         }
 
         console.log ("NEW PARAMS")
