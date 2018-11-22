@@ -13,8 +13,23 @@
         // check if the params are in play. If they are, don't do this
         // or else, 302 JS redundancy = unhappy servers everywhere.
 
+        // let's build this params a bit more smartly.
+        var allParams = location.search.split("&") // split around &.
+        var newParams = {}
+        allParams[0].replace("?","") // get rid of that ? in param 1.
+        for(var i = 0; i < allParams.length;i++){
+            // now we need to split it around the = to get the key:value
+            var parts = allParams[i].split("=")
+            // now add this to the map of form key = value.
+            // as held in parts[0] and [1].
+            newParams[parts[0]] = parts[1]
+        }
+
+        console.log ("NEW PARAMS")
+        console.log (newParams)
+
         // status=ERROR&errorCode=4001&errorDesc=MSISDN%20Not%20found%20in%20header
-        if(location.search.split('status=')[1] == undefined){
+        if(newParams["status"] == undefined){
             // didn't find that param. Go get it.
             var merchantId = 147
             var operatorIdd = "MtnRSA"
@@ -28,17 +43,7 @@
             // ERROR: http://www.yoursite.com?status=ERROR&errorCode=4001&errorDesc=MSISDN%20Not found%20in%20header
 
 
-            // let's build this params a bit more smartly.
-            var allParams = location.search.split("&") // split around &.
-            var newParams = {}
-            allParams[0].replace("?","") // get rid of that ? in param 1.
-            for(var i = 0; i < allParams.length();i++){
-                // now we need to split it around the = to get the key:value
-                var parts = allParams[i].split("=")
-                // now add this to the map of form key = value.
-                // as held in parts[0] and [1].
-                newParams[parts[0]] = parts[1]
-            }
+
 
             if(newParams["status"] == "SUCCESS"){
                 console.log("SUCCESS:\n" +
