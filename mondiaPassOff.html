@@ -16,11 +16,13 @@
         // let's build this params a bit more smartly.
         var allParams = location.search.split("&") // split around &.
         var newParams = {}
-        allParams[0].replace("?","") // get rid of that ? in param 1.
-        
+        //allParams[0] // get rid of that ? in param 1.
+
         for(var i = 0; i < Object.keys(allParams).length;i++){
             // now we need to split it around the = to get the key:value
-            var parts = allParams[i].split("=")
+            // trash and question marks... obv will be before first
+            // but hey, when in rome, destroy the uncertainty :P.
+            var parts = allParams[i].replace("?","").split("=")
             // now add this to the map of form key = value.
             // as held in parts[0] and [1].
             newParams[parts[0]] = parts[1]
