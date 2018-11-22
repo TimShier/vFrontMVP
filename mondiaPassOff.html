@@ -17,7 +17,7 @@
         var allParams = location.search.split("&") // split around &.
         var newParams = {}
         allParams[0].replace("?","") // get rid of that ? in param 1.
-        for(var i = 0; i < allParams.length;i++){
+        for(var i = 0; i < Object.keys(allParams).length;i++){
             // now we need to split it around the = to get the key:value
             var parts = allParams[i].split("=")
             // now add this to the map of form key = value.
