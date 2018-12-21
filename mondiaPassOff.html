@@ -38,6 +38,7 @@
             // didn't find that param. Go get it.
             var merchantId = 147
             var operatorIdd = "MtnRSA"
+            // http://login.mondiamediamena.com/billinggw-lcm/billing?method=getcustomer&merchantId="+merchantId+"&redirect="+redirectUrl
             var hostUrl = "http://login.mondiamediamena.com"
             var redirectUrl = "http://cowboyengineering.co.za/vFrontMVP/mondiaPassOff.html"
             window.location = hostUrl+"/billinggw-lcm/billing?method=getcustomer&merchantId="+merchantId+"&redirect="+redirectUrl //+"&operatorId=<OPERATOR ID>"
